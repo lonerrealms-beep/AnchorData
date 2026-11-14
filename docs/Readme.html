@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        body {
+            background: black;
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Consolas', 'Fira Code', Monaco, monospace;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 100px;
+            padding: 20px;
+            margin: 0;
+        }
+        p {
+            color: white;
+            margin: 0;
+            white-space: pre-line
+        }
+        button {
+            cursor: pointer;
+            transition: all 0.2s ease-out;
+        }
+        button:hover {
+            transform: translateY(-2px);
+        }
+        button:active {
+            opacity: 0.5;
+            transform: translateY(2px);
+        }
+        .welcome-card {
+            box-shadow: inset 0 0 100px rgb(0, 0, 0);
+            transition: all 20s ease-out;
+            display: flex;
+            background-image: url('./assets/Back.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            width: 100%;
+            height: 300px;
+            border-radius: 20px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 25px;
+            .card-top {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                .top {
+                    display: flex;
+                    font-weight: 900;
+                }
+                .bottom {
+                    p {
+                        font-size: 10px;
+                        color: rgb(192, 192, 192);
+                        font-weight: 100;
+                    }
+                }
+            }
+            .card-bottom {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+                gap: 10px;
+                button {
+                    border-radius: 10px;
+                    background: blue;
+                    padding: 8px 10px;
+                    border-style: none;
+                    color: white;
+                    font-weight: 700;
+                }
+            }
+        }
+        .welcome-card:hover {
+            background-position: top;
+            box-shadow: inset 0 0 200px rgb(0, 0, 0);
+        }
+        .link-by {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            gap: 50px;
+            opacity: 0.5;
+        }
+
+
+        /* ----------------------------- */
+        /* Базовый контейнер */
+        .block {
+            background: rgb(2, 2, 12);
+            border: 3px solid rgb(0, 22, 122);
+            border-radius: 20px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+            width: 90%;
+        }
+
+        /* 1. Обычный текст (стандартный) */
+        .block-text {
+            background: #ffffff18;
+            color: #b2b2b2;
+            font-size: 13px;
+            border-radius: 10px;
+            padding: 8px 10px;
+            white-space: pre-line;
+            line-height: 1.4;
+        }
+        .block .text {
+            color: #b2b2b2;
+            font-size: 13px;
+            border-radius: 10px;
+            padding: 8px 10px;
+            white-space: pre-line;
+            line-height: 1.4;
+        }
+        hr {
+            width: 100%;
+            border-style: dashed;
+            border-color: rgb(40, 40, 111);
+        }
+
+        /* 2. Заголовок функции */
+        .block-function {
+            background: #1c3598;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+        .block-function2 {
+            background: #5e1c98a4;
+            width: max-content;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 10px;
+            padding: 8px 10px;
+        }
+        /* Выделение белым (для названий переменных / аргументов) */
+        .highlight-code {
+            background: rgba(255, 255, 255, 0.051);
+            color: #ffffff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .highlight-func {
+            background: rgba(0, 0, 0, 0.3);
+            color: #b901f6;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .highlight-blue {
+            background: rgba(11, 56, 255, 0.149);
+            color: #40acff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .highlight-value {
+            background: rgba(255, 174, 11, 0.149);
+            color: #ffbd2f;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        /* 3. Важное предупреждение (Warn / Alert) */
+        .block-warn {
+            background: #ff6f001f;
+            color: #ff6f00;
+            font-size: 13px;
+            border-radius: 10px;
+            padding: 8px 10px;
+            line-height: 1.4;
+        }
+        .block-result {
+            background: #00ff661f;
+            color: #42f389;
+            font-size: 13px;
+            border-radius: 10px;
+            padding: 8px 10px;
+            line-height: 1.4;
+        }
+
+        /* ------------------------------------ */
+        /* Контейнер блока кода в стиле твоего скриншота Roblox */
+        pre[class*="language-"] {
+            background: #000000 !important; /* Насыщенный черный фон */
+            border: 2px solid rgba(19, 121, 255, 0.443);
+            border-radius: 12px;
+            padding: 15px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow-x: auto;
+        }
+
+        /* Обычный текст и переменные — светло-песочный/белый */
+        .token.plain, pre[class*="language-"], code[class*="language-"] {
+            color: #e0d0c0 !important;
+        }
+
+        /* Ключевые слова (if, then, else, end, local, return) — Ярко-оранжевые */
+        .token.keyword {
+            color: #FF846F !important;
+            font-weight: bold;
+        }
+
+        /* Названия функций и методов (Fire, Kick, tostring, find) — Желтовато-оранжевые */
+        .token.function {
+            color: #5b95e5 !important;
+        }
+
+        /* Строки (текст в кавычках вроде 'PLAYER_ALREADY_ON_SERVER') — Теплые персиковые */
+        .token.string {
+            color: #55A693 !important;
+        }
+
+        /* Цифры, булевы значения и константы (nil, true, false) — Красно-оранжевые */
+        .token.boolean,
+        .token.number,
+        .token.constant {
+            color: #f58014 !important;
+        }
+
+        /* Комментарии — Темно-оранжевые / приглушенные */
+        .token.comment {
+            color: #5b5b5b !important;
+            font-style: italic;
+        }
+
+        /* Операторы (=, +, -, ., ,) — Светлые */
+        .token.operator {
+            color: #e0d0c0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="welcome-card">
+            <div class="card-top">
+                <div class="top">
+                    <img src="./assets/AnchorDataIcon.png" style="height: 50px;">
+                    <p style="font-size: 30px;">AnchorData 1.0.0</p>
+                </div>
+                <div class="bottom">
+                    <p>by: Loner Realms</p>
+                </div>
+            </div>
+            <div class="card-bottom">
+                <button class="btn" onclick="const a = document.createElement('a'); a.href = '../AnchorData.rbxm'; a.download = ''; a.click();">
+                    Скачать .rbxm
+                </button>
+            </div>
+        </div>
+        <div class="link-by">
+            <button style="height: 30px; width: 30px; background: none; border-style: none;" onclick=""><img src="./assets/twiter.png" style="height: 20px;"></button>
+            <button style="height: 30px; width: 30px; background: none; border-style: none;" onclick=""><img src="./assets/telegram.png" style="height: 20px;"></button>
+            <button style="height: 30px; width: 30px; background: none; border-style: none;" onclick=""><img src="./assets/git.png" style="height: 20px;"></button>
+        </div>
+        <div class="block"> <!--GetData -->
+            <div class="block-function">
+                AnchorData.GetData(<span class="highlight-code">player, mode</span>)
+            </div>
+            <div class="block-text">With this function you can get the player's current data.
+
+Arguments:
+
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+<span class="highlight-code">mode</span> — a boolean value (optional parameter): 
+├─ <span class="highlight-value">true</span> — the function will wait for the data to load for up to 10 seconds. If the data still has not appeared, or the player left, it will return <span class="highlight-value">nil</span>. 
+└─ <span class="highlight-value">false / nil</span>  — returns the result immediately, without waiting (default).
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local data = AnchorData.GetData(player, true)
+if data then
+	data.Coins += 100
+	print(data.Coins)
+end
+</code></pre>
+            
+            <div class="block-warn">
+                ⚠️ This is a live table: everything you change in it will be saved. To read without risk, use <span class="highlight-func">GetDataCopy()</span>. 
+                The <span class="highlight-code">Meta</span> service information is not returned by this function.
+            </div>
+            <div class="block-result">
+                The function will return the player's data table <span class="highlight-code">Data</span>. It will return <span class="highlight-value">nil</span> if the player is not loaded yet, has already left, or an invalid argument was passed.
+            </div>
+        </div>
+        <div class="block"> <!--GetOldData -->
+            <div class="block-function">
+                AnchorData.GetOldData(<span class="highlight-code">player, mode</span>)
+            </div>
+            <div class="block-text">With this function you can get the player's data as it was at the moment of joining.
+
+Arguments:
+
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+<span class="highlight-code">mode</span> — a boolean value (optional parameter):
+├─ <span class="highlight-value">true</span> — the function will wait for the data to load for up to 10 seconds. If the data still has not appeared, it will return <span class="highlight-value">nil</span>. 
+└─ <span class="highlight-value">false / nil</span> — returns the result immediately, without waiting (default).
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local before = AnchorData.GetOldData(player, true)
+local now = AnchorData.GetData(player)
+if before and now then
+	print("Earned this session:", now.Coins - before.Coins)
+end
+</code></pre>
+            
+            <div class="block-warn">
+                ⚠️ This is a snapshot: changes in it are not saved and do not affect the current data. The Meta <span class="highlight-code">Meta</span> service information is not returned by this function.
+            </div>
+            <div class="block-result">
+                The function will return a table with the player's data as of joining, or <span class="highlight-value">nil</span> if there is no data.
+            </div>
+        </div>
+        <div class="block"> <!--GetFullData -->
+            <div class="block-function">
+                AnchorData.GetFullData(<span class="highlight-code">player, signature</span>)
+            </div>
+            <div class="block-text">С помощью этой функции вы можете получить все данные игрока, включая системную Meta.
+
+Аргументы:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+<span class="highlight-code">signature</span> — the signature <span class="highlight-blue">"I-KNOW-WHAT-I'M-DOING"</span>, otherwise the function will return <span class="highlight-value">nil</span>.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local record = AnchorData.GetFullData(player, "I-KNOW-WHAT-I'M-DOING")
+if record then
+	print(record.Data)
+	print(record.Meta)
+end
+</code></pre>
+            
+            <div class="block-warn">
+                ⚠️ The signature is required. Enter it consciously: changing <span class="highlight-code">Meta</span> directly can break the module (the session, autosave, the "new player" detection). This is a live table, not a copy.
+            </div>
+            <div class="block-result">
+                The function will return the player's whole table <span class="highlight-code">{ Data = ..., Meta = ... }</span> or <span class="highlight-value">nil</span> (no signature or the player is not loaded).
+            </div>
+        </div>
+        <div class="block"> <!--GetDataCopy -->
+            <div class="block-function">
+                AnchorData.GetDataCopy(<span class="highlight-code">player</span>)
+            </div>
+            <div class="block-text">With this function you can get a copy of the player's data.
+
+Argument:
+
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local copy = AnchorData.GetDataCopy(player)
+if copy then
+	copy.Coins = 0 -- the real data did not change
+	print(copy)
+end
+</code></pre>
+            
+            <div class="block-warn">
+                ⚠️ The copy is independent: changes in it are not saved. The <span class="highlight-code">Meta</span> service information is not returned.
+            </div>
+            <div class="block-result">
+                The function will return a copy of the player's data table, or <span class="highlight-value">nil</span> if the player is not loaded.
+            </div>
+        </div>
+        <div class="block"> <!--GetOldDataCopy -->
+            <div class="block-function">
+                AnchorData.GetOldDataCopy(<span class="highlight-code">player</span>)
+            </div>
+            <div class="block-text">With this function you can get a copy of the player's data as it was at the moment of joining.
+
+Argument:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local copy = AnchorData.GetOldDataCopy(player)
+print(copy)
+</code></pre>
+            
+            <div class="block-warn">
+                The copy is independent. The <span class="highlight-code">Meta</span> service information is not returned.
+            </div>
+            <div class="block-result">
+                The function will return a copy of the data table as of joining, or <span class="highlight-value">nil</span> if there is no data.
+            </div>
+        </div>
+        <div class="block"> <!--GetAccountCreated -->
+            <div class="block-function">
+                AnchorData.GetAccountCreated(<span class="highlight-code">player</span>)
+            </div>
+            <div class="block-text">With this function you can find out when the player first joined the game (when their record was created).
+
+Argument:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local created = AnchorData.GetAccountCreated(player)
+if created then
+	print(created.Date.year, created.Date.month, created.Date.day)
+	local days = (os.time() - created.Time) / 86400
+	print("Days playing:", math.floor(days))
+end
+</code></pre>
+            <div class="block-text"><span class="highlight-bold">More details about what <span class="highlight-code">Date</span> and <span class="highlight-code">Time</span> contain:
+
+<span class="highlight-c">Date</span> — a ready-made table with the date and time components, built with <span class="highlight-blue">os.date("*t")</span>. 
+├─ a ready-made table with the date and time components, built with
+└─ Fields: <span class="highlight-value">year, month, day, hour, min, sec, wday, yday, isdst.</span>
+<span class="highlight-code">Time</span> — a numeric value (Unix timestamp in seconds) obtained with <span class="highlight-blue">os.time()</span>. 
+└─ Suitable for calculations: how much time has passed, comparing two dates, timers.
+                </div>
+            <div class="block-warn">
+                ⚠️ This is a copy, not a live table. The value is written once, on the first join, and does not change afterwards.
+            </div>
+            <div class="block-result">
+                The function will return the table <span class="highlight-code">{ Date = ..., Time = ... }</span> or <span class="highlight-value">nil</span>, if the player is not loaded.
+            </div>
+        </div>
+        <div class="block"> <!--GetOldServerId -->
+            <div class="block-function">
+                AnchorData.GetOldServerId(<span class="highlight-code">player</span>)
+            </div>
+            <div class="block-text">With this function you can find out the identifier (JobId) of the server the player was on before the current session.
+
+Argument:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local lastServer = AnchorData.GetOldServerId(player)
+if lastServer == game.JobId then
+	print("The player returned to the same server")
+end
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ For a player joining for the first time, an empty string is returned. In Studio <span class="highlight-blue">game.JobId</span> is empty, while the module uses the name <span class="highlight-blue">"STUDIO_SESSION"</span>, so comparing with <span class="highlight-blue">game.JobId</span> does not work in Studio.
+            </div>
+            <div class="block-result">
+                The function will return the <span class="highlight-blue">JobId</span> of the previous server (a string) or <span class="highlight-value">nil</span> if the player is not loaded.
+            </div>
+        </div>
+        <div class="block"> <!--IsOnline -->
+            <div class="block-function">
+                AnchorData.IsOnline(<span class="highlight-code">player</span>)
+            </div>
+            <div class="block-text">With this function you can find out whether the player is playing right now, including on another server.
+
+Argument:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local result = AnchorData.IsOnline(userId)
+
+if result == true then
+	print("Online")
+elseif result == false then
+	print("Offline")
+else
+	print("Could not check")
+end
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ The function calls the DataStore: it uses a request and waits for the response. Roblox may return a response cached for a few seconds. "Online" is determined by the session: the flag is set and it was updated no longer than LockTimeout seconds ago. If the server crashed, the player will stop counting as online once that time passes.
+            </div>
+            <div class="block-result">
+                The function will return <span class="highlight-value">true</span> if the player is online, and <span class="highlight-value">false</span> if they are offline or there is no record for them. It will return <span class="highlight-value">nil</span> if the check could not be done (invalid argument or DataStore error).
+            </div>
+        </div>
+        <div class="block"> <!--ForceSave -->
+            <div class="block-function">
+                AnchorData.ForceSave(<span class="highlight-code">player</span>)
+            </div>
+            <div class="block-text">With this function you can force-save the player's data right now, without waiting for the autosave.
+
+Argument:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+AnchorData.ForceSave(player) -- for example, after an important purchase
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ The player stays in the game and keeps the session. The function waits for the DataStore response, so the script that called it will wait. If the player is already being saved (autosave or leaving), the command will be ignored. It works only for players loaded on this server. If another server has already taken the player's session, the player will be kicked.
+            </div>
+            <div class="block-result">
+                The function returns nothing.
+            </div>
+        </div>
+        <div class="block"> <!--DeleteData -->
+            <div class="block-function">
+                AnchorData.DeleteData(<span class="highlight-code">player, signature</span>)
+            </div>
+            <div class="block-text">With this function you can delete the player's saved data.
+
+Arguments:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+<span class="highlight-code">signature</span> — the signature <span class="highlight-blue">"I-KNOW-WHAT-I'M-DOING"</span>, otherwise the function will return <span class="highlight-value">false</span>.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local result = AnchorData.DeleteData(player, "I-KNOW-WHAT-I'M-DOING")
+if result then
+	print("Deleted!")
+else
+	print("Error!")
+end
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ Enter the signature consciously: the player's record is deleted from the DataStore. If the player is currently being saved or loaded, the function will wait for that to finish and only then delete. It works only for players loaded on this server. If the player is on this server, starting data is loaded for them right away, and PlayerLoaded and NewPlayer fire again. Field objects obtained earlier will stop affecting the data: get them again. The copy of the deleted data is kept only in memory (GetDeletedBackup) and disappears when the player leaves.
+            </div>
+            <div class="block-result">
+                The function will return true on a successful deletion and false on an error (no signature, the player is not loaded, or the DataStore returned an error).
+            </div>
+        </div>
+        <div class="block"> <!--GetDeletedBackup -->
+            <div class="block-function">
+                AnchorData.GetDeletedBackup(<span class="highlight-code">player, signature</span>)
+            </div>
+            <div class="block-text">With this function you can get the data that was deleted by the DeleteData function.
+
+Argument:
+<span class="highlight-code">player</span> — a numeric <span class="highlight-blue">UserId</span> or a <span class="highlight-blue">Player</span> object.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local backup = AnchorData.GetDeletedBackup(player)
+local data = AnchorData.GetData(player)
+
+if backup and data then
+	for key, value in pairs(backup) do
+		data[key] = value -- restore the deleted values
+	end
+end
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ The backup exists only while the player is on the server. After the player leaves it disappears, and the data can no longer be restored. Restore carefully: the example above overwrites the top-level values of the current data with the values from the backup.
+            </div>
+            <div class="block-result">
+                The function will return a copy of the deleted data (a table), or nil if there is no backup.
+            </div>
+        </div>
+        <div class="block"> <!--GetRawData -->
+            <div class="block-function">
+                AnchorData.GetRawData(<span class="highlight-code">signature</span>)
+            </div>
+            <div class="block-text">С помощью этой функции вы можете получить внутреннюю таблицу всех загруженных игроков (PlayersData). Предназначена для отладки.
+
+Аргумент:
+<span class="highlight-code">signature</span> — the signature <span class="highlight-blue">"I-KNOW-WHAT-I'M-DOING"</span>, otherwise the function will return <span class="highlight-value">false</span>
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local all = AnchorData.GetRawData("I-KNOW-WHAT-I'M-DOING")
+if all then
+	for userId, record in pairs(all) do
+		print(userId, record.Data, record.Meta)
+	end
+end
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ The signature is required. Enter it consciously: these are internal live tables, and changes in them can break the module.
+            </div>
+            <div class="block-result">
+                The function will return a table where the key is the UserId and the value is { Data = ..., Meta = ... }. Without the signature, false is returned.
+            </div>
+        </div>
+        <div class="block"> <!--GetRawOldData -->
+            <div class="block-function">
+                AnchorData.GetRawOldData(<span class="highlight-code">signature</span>)
+            </div>
+            <div class="block-text">With this function you can get the internal table of data snapshots taken at the moment of joining (OldPlayersData). Intended for debugging.
+
+Argument:
+<span class="highlight-code">signature</span> — the signature <span class="highlight-blue">"I-KNOW-WHAT-I'M-DOING"</span>, otherwise the function will return <span class="highlight-value">false</span>
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local snapshots = AnchorData.GetRawOldData("I-KNOW-WHAT-I'M-DOING")
+if snapshots then
+	print(snapshots)
+end
+</code></pre>
+
+            <div class="block-warn">
+                ⚠️ The signature is required. Enter it consciously.
+            </div>
+            <div class="block-result">
+                The function will return a table of snapshots (key — UserId, value { Data = ..., Meta = ... }). Without the signature, false is returned.
+            </div>
+        </div>
+        <div class="block"> <!--Field .. -->
+            <div class="block-function">
+                AnchorData.Field(<span class="highlight-code">player, target, mode</span>)
+            </div>
+            <div class="block-text">With this function you get an object for working with one field of the player's data. Through it you can read, change and delete the value, and also subscribe to changes.
+
+Arguments:
+player — a numeric UserId or a Player object.
+target — a string used to find the field:
+├─ "Coins" — a key name. The first key with this name at any depth will be found.
+└─ "Info.Coins" — a path through dots. It points to exactly one field.
+mode — a boolean value (optional parameter):
+├─ true — the function will wait for the data to load for up to 10 seconds. If the data still has not appeared, it will return nil.
+└─ false / nil — returns the result immediately, without waiting.
+            </div>
+            <p class="text">Example code:</p>
+        <pre><code class="language-lua">local AnchorData = require(game.ServerScriptService.AnchorData.Module)
+
+local coins = AnchorData.Field(player, "Coins", true)
+if coins then
+	coins:Add(100)
+	print(coins:Get())
+end
+</code></pre>
+            <div class="block-warn">
+                ⚠️ If the name appears in the data several times, it is not known in advance which of the fields will be found. In that case use a path through dots.
+            </div>
+            <div class="block-warn">
+                ⚠️ The object is tied to the table where the field was found. If that table is deleted or the player's data is unloaded (the player left), the object stops affecting the saved data.
+            </div>
+            <div class="block-warn">
+                ⚠️ If a path is given and only the last key does not exist (for example, "Info.Gems"), you still get an object: Get() will return nil, and Set() will create the field. All intermediate tables in the path must exist.
+            </div>
+            <div class="block-result">
+                The function will return a field object, or nil if the player is not loaded or the field was not found by name.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:Get()</span>
+            <div class="block-text">With this method you get the field's current value.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local level = AnchorData.Field(player, "Level")
+print(level:Get())
+</code></pre>
+<div class="block-result">
+                The method will return the field's value, or nil if there is no field.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:Type()</span>
+            <div class="block-text">With this method you find out the type of the value in the field.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local coins = AnchorData.Field(player, "Coins")
+print(coins:Type()) -- "number"
+</code></pre>
+            <div class="block-result">
+                The method will return a string: "number", "string", "boolean", "table". If the field no longer exists, the string "nil" is returned.
+            </div>
+            <hr>
+            
+            <span class="block-function2">handle:Set(value)</span>
+            <div class="block-text">With this method you write a new value into the field. The type of the value is not checked.
+
+Arguments:
+value — the new value of the field.
+</div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local level = AnchorData.Field(player, "Level")
+level:Set(25)
+</code></pre>
+            <div class="block-result">
+                The method will return the written value. If someone is subscribed to the field, a Set event will arrive.
+            </div>
+            <hr>
+            <span class="block-function2">handle:Add(value) и handle:Take(value)</span>
+            <div class="block-text">With these methods you increase (Add) or decrease (Take) a numeric field.
+
+Arguments:
+value — the number to change the field by.
+</div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local coins = AnchorData.Field(player, "Coins")
+coins:Add(100)
+coins:Take(30)
+print(coins:Get())
+</code></pre>
+            <div class="block-warn">
+                ⚠️ The methods work only with numbers. If the field or the argument is not a number, a warning will appear in the Output and the value will not change.
+            </div>
+            <div class="block-result">
+                The methods will return the new value, or nothing if the change failed. If someone is subscribed to the field, an Add or Take event will arrive.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:True() и handle:False()</span>
+            <div class="block-text">With these methods you write true or false into a boolean field.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local tutorial = AnchorData.Field(player, "TutorialDone")
+tutorial:True()
+</code></pre>
+            <div class="block-warn">
+                ⚠️ The methods work only with boolean fields. For other types a warning will appear in the Output.
+            </div>
+            <div class="block-result">
+                The methods will return true if the value was written, and false if not. If someone is subscribed to the field, a True or False event will arrive.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:Delete()</span>
+            <div class="block-text">With this method you delete the field, whatever its type, including a table with all of its contents.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local temp = AnchorData.Field(player, "TempBoost")
+temp:Delete()
+</code></pre>
+            <div class="block-warn">
+                ⚠️ The method deletes tables without confirmation. If you need protection, use DeleteValue or DeleteTable.
+            </div>
+            <div class="block-result">
+                The method will return true if the field was deleted, and false if there was no field. A Delete event will arrive, where the old value is in the old argument.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:DeleteValue()</span>
+            <div class="block-text">With this method you delete the field only if it is not a table.</div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local coins = AnchorData.Field(player, "Coins")
+coins:DeleteValue()
+</code></pre>
+            <div class="block-warn">
+                ⚠️ If the field holds a table, the method will delete nothing and will write a warning. For tables use DeleteTable.
+            </div>
+            <div class="block-result">
+                The method will return true on a deletion and false on a refusal.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:DeleteTable()</span>
+            <div class="block-text">With this method you delete the field only if it is a table.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local inventory = AnchorData.Field(player, "Inventory")
+inventory:DeleteTable()
+</code></pre>
+            <div class="block-warn">
+                ⚠️ If the field does not hold a table, the method will delete nothing and will write a warning. For simple values use DeleteValue.
+            </div>
+            <div class="block-warn">
+                ⚠️ After a table is deleted, the objects you obtained earlier for fields inside it stop affecting the saved data.
+            </div>
+            <div class="block-result">
+                The method will return true on a deletion and false on a refusal.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:CreateEvent()</span>
+            <div class="block-text">With this method you get an event that fires on every change of this field made through an object. If the event does not exist yet, it is created.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local coins = AnchorData.Field(player, "Coins")
+
+coins:CreateEvent():Connect(function(action, playerId, key, old, new)
+	print(action, key, old, "->", new)
+end)
+
+AnchorData.Field(player, "Coins"):Add(100) -- Add Coins 1000 -> 1100
+</code></pre>
+            <div class="block-text">Event arguments:
+
+action — Set, Add, Take, True, False or Delete.
+playerId — the player's UserId.
+key — the last key only ("Coins", not "Info.Coins").
+old — the value before the change.
+new — the value after the change.
+            </div>
+            <div class="block-warn">
+                ⚠️ The event is shared by all objects of the same field: you subscribed through one object and changed through another, and the signal still arrives.
+            </div>
+            <div class="block-warn">
+                ⚠️ Events fire only for changes made through an object. If you write data.Coins += 1 directly, there will be no event.
+            </div>
+            <div class="block-result">
+                The method will return .Event, which you connect to with :Connect.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:GetEvent(create)</span>
+            <div class="block-text">With this method you get the field's event, if it already exists.
+
+Arguments:
+create — a boolean value (optional parameter). If true and the event does not exist yet, it will be created.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">local coins = AnchorData.Field(player, "Coins")
+local event = coins:GetEvent() -- nil if nobody created it
+</code></pre>
+            <div class="block-result">
+                The method will return .Event or nil.
+            </div>
+            <hr>
+
+            <span class="block-function2">handle:DestroyEvent()</span>
+            <div class="block-text">With this method you destroy the field's event for all objects of this field.
+            </div>
+            <p class="text">Example code:</p>
+            <pre><code class="language-lua">AnchorData.Field(player, "Coins"):DestroyEvent()
+</code></pre>
+            <div class="block-text">If there was no event, a warning will appear in the Output.
+
+The Detachment event
+When a player's data is unloaded (the player left), all of the events of their fields receive the signal ('Detachment', playerId), and a frame later the events are destroyed. This means the field objects you are still holding no longer work.
+            </div>
+            <pre><code class="language-lua">coins:CreateEvent():Connect(function(action, playerId)
+	if action == "Detachment" then
+		print("Player data", playerId, "was unloaded")
+	end
+end)
+</code></pre>
+        </div>
+    </div>
+
+
+    <div class="link-by">
+        <button style="height: 30px; width: 30px; background: none; border-style: none;" onclick=""><img src="./assets/twiter.png" style="height: 20px;"></button>
+        <button style="height: 30px; width: 30px; background: none; border-style: none;" onclick=""><img src="./assets/telegram.png" style="height: 20px;"></button>
+        <button style="height: 30px; width: 30px; background: none; border-style: none;" onclick=""><img src="./assets/git.png" style="height: 20px;"></button>
+    </div>
+    <footer>
+        <p>2026 AnchorData • by <a href="https://github.com/lonerrealms-beep" target="_blank">lonerrealms-beep</a></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-lua.min.js"></script>
+</body>
+</html>
