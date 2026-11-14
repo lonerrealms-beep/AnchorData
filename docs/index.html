@@ -104,9 +104,6 @@
             opacity: 0.5;
         }
 
-
-        /* ----------------------------- */
-        /* Базовый контейнер */
         .block {
             background: rgb(2, 2, 12);
             border: 3px solid rgb(0, 22, 122);
@@ -119,7 +116,6 @@
             width: 90%;
         }
 
-        /* 1. Обычный текст (стандартный) */
         .block-text {
             background: #ffffff18;
             color: #b2b2b2;
@@ -143,7 +139,6 @@
             border-color: rgb(40, 40, 111);
         }
 
-        /* 2. Заголовок функции */
         .block-function {
             background: #1c3598;
             color: white;
@@ -161,7 +156,6 @@
             border-radius: 10px;
             padding: 8px 10px;
         }
-        /* Выделение белым (для названий переменных / аргументов) */
         .highlight-code {
             background: rgba(255, 255, 255, 0.051);
             color: #ffffff;
@@ -195,7 +189,7 @@
             font-family: monospace;
             font-size: 12px;
         }
-        /* 3. Важное предупреждение (Warn / Alert) */
+       
         .block-warn {
             background: #ff6f001f;
             color: #ff6f00;
@@ -213,10 +207,9 @@
             line-height: 1.4;
         }
 
-        /* ------------------------------------ */
-        /* Контейнер блока кода в стиле твоего скриншота Roblox */
+
         pre[class*="language-"] {
-            background: #000000 !important; /* Насыщенный черный фон */
+            background: #000000 !important; 
             border: 2px solid rgba(19, 121, 255, 0.443);
             border-radius: 12px;
             padding: 15px;
@@ -228,41 +221,35 @@
             overflow-x: auto;
         }
 
-        /* Обычный текст и переменные — светло-песочный/белый */
+
         .token.plain, pre[class*="language-"], code[class*="language-"] {
             color: #e0d0c0 !important;
         }
 
-        /* Ключевые слова (if, then, else, end, local, return) — Ярко-оранжевые */
         .token.keyword {
             color: #FF846F !important;
             font-weight: bold;
         }
 
-        /* Названия функций и методов (Fire, Kick, tostring, find) — Желтовато-оранжевые */
         .token.function {
             color: #5b95e5 !important;
         }
 
-        /* Строки (текст в кавычках вроде 'PLAYER_ALREADY_ON_SERVER') — Теплые персиковые */
         .token.string {
             color: #55A693 !important;
         }
 
-        /* Цифры, булевы значения и константы (nil, true, false) — Красно-оранжевые */
         .token.boolean,
         .token.number,
         .token.constant {
             color: #f58014 !important;
         }
 
-        /* Комментарии — Темно-оранжевые / приглушенные */
         .token.comment {
             color: #5b5b5b !important;
             font-style: italic;
         }
 
-        /* Операторы (=, +, -, ., ,) — Светлые */
         .token.operator {
             color: #e0d0c0 !important;
         }
@@ -281,9 +268,7 @@
                 </div>
             </div>
             <div class="card-bottom">
-                <button class="btn" onclick="const a = document.createElement('a'); a.href = './AnchorData.rbxm'; a.download = ''; a.click();">
-                    Скачать .rbxm
-                </button>
+                <button class="btn" onclick="const a = document.createElement('a'); a.href = './AnchorData.rbxm'; a.download = ''; a.click();">Скачать .rbxm</button>
             </div>
         </div>
         <div class="link-by">
